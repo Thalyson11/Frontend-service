@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Relatório Técnico</title>
+    <link rel="stylesheet" href="css/tokens.css">
+    <link rel="stylesheet" href="css/relatorios.css">
+    <link rel="stylesheet" href="css/ui-enhancements.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body data-relatorio-perfil="tecnico">
+
+<div class="layout">
+    <aside class="sidebar">
+        <div class="logo">
+            <h2>SupportDesk</h2>
+        </div>
+
+        <nav aria-label="Navegação Principal">
+            <a href="manutencoes_aberta.html">Manutenções</a>
+            <a href="RelatorioTecnico.html" class="active">Meu Relatório</a>
+            <a href="index.html">Logout</a>
+        </nav>
+    </aside>
+
+    <main class="content">
+        <header class="page-header">
+            <div>
+                <h1>Meu Relatório Técnico</h1>
+                <p>Indicadores calculados somente com as manutenções atribuídas ao técnico logado.</p>
+            </div>
+
+            <div class="header-actions">
+                <button type="button" class="secondary-button" id="btnPerfilAtualizar">Atualizar</button>
+                <button type="button" class="secondary-button" id="btnPerfilExportar">Exportar CSV</button>
+                <button type="button" id="btnPerfilImprimir">Imprimir</button>
+            </div>
+        </header>
+
+        <section class="metrics-grid metrics-grid-profile" aria-label="Resumo do técnico">
+            <div class="metric-card"><span>Total atribuídas</span><h2 id="perfilTotal">0</h2></div>
+            <div class="metric-card"><span>Abertas</span><h2 id="perfilAbertas">0</h2></div>
+            <div class="metric-card"><span>Em andamento</span><h2 id="perfilAndamento">0</h2></div>
+            <div class="metric-card"><span>Concluídas</span><h2 id="perfilConcluidas">0</h2></div>
+            <div class="metric-card"><span>Canceladas</span><h2 id="perfilCanceladas">0</h2></div>
+            <div class="metric-card"><span>Tempo médio</span><h2 id="perfilTempoMedio">-</h2></div>
+        </section>
+
+        <section class="main-card">
+            <div class="toolbar">
+                <div class="toolbar-left">
+                    <input type="text" id="perfilBusca" placeholder="Buscar por ID, solicitante, tipo, prioridade ou status...">
+                </div>
+
+                <div class="toolbar-right">
+                    <select id="perfilFiltroStatus" aria-label="Filtrar por status">
+                        <option value="">Todos os status</option>
+                        <option value="aberta">Aberta</option>
+                        <option value="em andamento">Em andamento</option>
+                        <option value="concluida">Concluída</option>
+                        <option value="cancelada">Cancelada</option>
+                    </select>
+                    <select id="perfilFiltroPrioridade" aria-label="Filtrar por prioridade">
+                        <option value="">Todas as prioridades</option>
+                        <option value="baixa">Baixa</option>
+                        <option value="media">Média</option>
+                        <option value="alta">Alta</option>
+                        <option value="critica">Crítica</option>
+                    </select>
+                    <button type="button" class="secondary-button" id="btnPerfilLimpar">Limpar</button>
+                </div>
+            </div>
+
+            <div class="report-grid report-grid-profile">
+                <div class="report-box"><h3>Distribuição por prioridade</h3><div id="perfilPrioridadeResumo" class="bar-list"></div></div>
+                <div class="report-box"><h3>Distribuição por status</h3><div id="perfilStatusResumo" class="bar-list"></div></div>
+                <div class="report-box"><h3>Evolução mensal</h3><div id="perfilEvolucaoResumo" class="bar-list"></div></div>
+            </div>
+
+            <div class="table-section">
+                <div class="table-title">
+                    <div>
+                        <h3>Manutenções atribuídas</h3>
+                        <p id="perfilTotalFiltrado">0 registros encontrados</p>
+                    </div>
+                </div>
+
+                <div class="table-wrapper">
+                    <table class="profile-report-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Solicitante</th>
+                                <th>Tipo</th>
+                                <th class="report-description-header">Descrição do Problema</th>
+                                <th>Prioridade</th>
+                                <th>Status</th>
+                                <th>Abertura</th>
+                                <th>Conclusão</th>
+                            </tr>
+                        </thead>
+                        <tbody id="perfilTabela">
+                            <tr><td colspan="8">Carregando relatório...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
+
+<footer id="rodape-usuario"></footer>
+
+<script src="js/relatorio_perfil.js"></script>
+<script src="js/ui-enhancements.js"></script>
+</body>
+</html>

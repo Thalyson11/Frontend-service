@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Minhas Solicitações</title>
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/minhas_solicitacoes.css">
+      <link rel="stylesheet" href="css/ui-enhancements.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <div class="layout">
+
+    <!-- SIDEBAR (desktop) -->
+    <aside class="sidebar">
+      <div>
+        <h2 class="l">SupportDesk</h2>
+        <div class="logo-area">
+          <div class="logo-icon">👤</div>
+          <div>
+            <h2>Solicitante</h2>
+            <p>Central de Solicitações</p>
+          </div>
+        </div>
+        <nav class="menu">
+          <a href="#" class="active">📋 Minhas Solicitações</a>
+          <a href="#" onclick="carregarSolicitantes('solicitante','solicitanteAdd'), abrirModalAdicionar()">➕ Nova Solicitação</a>
+          <a href="RelatorioSolicitante.html">📊 Meu Relatório</a>
+          <a href="index.html">🚪 Logout</a>
+        </nav>
+      </div>
+    </aside>
+
+    <!-- NAVBAR MOBILE -->
+    <header class="mobile-header">
+      <span class="mobile-brand">SupportDesk</span>
+      <button class="hamburger" id="hamburgerBtn" onclick="toggleMenu()" aria-label="Abrir menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </header>
+
+    <!-- MENU MOBILE DROPDOWN -->
+    <nav class="mobile-menu" id="mobileMenu">
+      <a href="#" onclick="closeMobileMenu()">📋 Minhas Solicitações</a>
+      <a href="#" onclick="carregarSolicitantes('solicitante','solicitanteAdd'), abrirModalAdicionar(), closeMobileMenu()">➕ Nova Solicitação</a>
+      <a href="RelatorioSolicitante.html">📊 Meu Relatório</a>
+      <a href="index.html">🚪 Logout</a>
+    </nav>
+    <!-- OVERLAY para fechar o menu ao clicar fora -->
+    <div class="mobile-overlay" id="mobileOverlay" onclick="closeMobileMenu()"></div>
+
+    <!-- CONTEÚDO -->
+    <main class="main-content">
+
+     
+
+      <!-- ÁREA DE AÇÃO DO SOLICITANTE -->
+      <section class="solicitante-actions" aria-label="Ações do solicitante">
+        <div class="solicitante-action-card">
+          <div>
+            <span class="page-tag">NOVA SOLICITAÇÃO</span>
+            <h2>Precisa de manutenção?</h2>
+            <p>Abra uma solicitação informando o tipo, a prioridade e a descrição do problema.</p>
+          </div>
+          <button class="primary-button" onclick="carregarSolicitantes('solicitante','solicitanteAdd'), abrirModalAdicionar()">
+            + Nova Solicitação
+          </button>
+        </div>
+      </section>
+
+      <!-- CARD PRINCIPAL -->
+      <section class="content-card">
+        <div class="toolbar">
+          <div class="toolbar-left">
+            <h3>Minhas Solicitações</h3>
+            <p>Pesquise, filtre e consulte o status das suas solicitações.</p>
+            <span id="contadorSolicitante">0 solicitações</span>
+          </div>
+          <div class="toolbar-right">
+            <button class="secondary-button" id="btnExportarSolicitante" type="button">Exportar CSV</button>
+            <button class="secondary-button" id="btnImprimirSolicitante" type="button">Imprimir</button>
+            <button class="secondary-button" onclick="buscar()" type="button">Atualizar Lista</button>
+          </div>
+        </div>
+
+        <div class="filtros-solicitante filtros-solicitante-modern" aria-label="Filtros de solicitações">
+          <div class="filter-search-row">
+            <input type="text" id="buscarSolicitacao" placeholder="Pesquisar por ID, tipo, descrição, técnico ou status...">
+            <button class="secondary-button" id="btnLimparFiltrosSolicitante" type="button">Limpar filtros</button>
+          </div>
+
+          <select id="filtroStatusSolicitante" class="sr-filter-select" aria-label="Filtrar por status">
+            <option value="">Todos os status</option>
+            <option value="aberta">Aberta</option>
+            <option value="em andamento">Em andamento</option>
+            <option value="concluida">Concluída</option>
+            <option value="cancelada">Cancelada</option>
+          </select>
+          <select id="filtroPrioridadeSolicitante" class="sr-filter-select" aria-label="Filtrar por prioridade">
+            <option value="">Todas as prioridades</option>
+            <option value="baixa">Baixa</option>
+            <option value="media">Média</option>
+            <option value="alta">Alta</option>
+            <option value="critica">Crítica</option>
+          </select>
+
+          <div class="filter-chip-section">
+            <span>Status</span>
+            <div class="filter-chip-group" data-filter-group="filtroStatusSolicitante">
+              <button type="button" class="filter-chip active" data-filter-value="">Todos</button>
+              <button type="button" class="filter-chip status-aberta" data-filter-value="aberta">● Aberta</button>
+              <button type="button" class="filter-chip status-andamento" data-filter-value="em andamento">● Em andamento</button>
+              <button type="button" class="filter-chip status-concluida" data-filter-value="concluida">● Concluída</button>
+              <button type="button" class="filter-chip status-cancelada" data-filter-value="cancelada">● Cancelada</button>
+            </div>
+          </div>
+
+          <div class="filter-chip-section">
+            <span>Prioridade</span>
+            <div class="filter-chip-group" data-filter-group="filtroPrioridadeSolicitante">
+              <button type="button" class="filter-chip active" data-filter-value="">Todas</button>
+              <button type="button" class="filter-chip prioridade-baixa" data-filter-value="baixa">Baixa</button>
+              <button type="button" class="filter-chip prioridade-media" data-filter-value="media">Média</button>
+              <button type="button" class="filter-chip prioridade-alta" data-filter-value="alta">Alta</button>
+              <button type="button" class="filter-chip prioridade-critica" data-filter-value="critica">Crítica</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="local-search-history" id="historicoBuscasSolicitante" aria-label="Últimas pesquisas"></div>
+
+        <div id="content" class="loading">
+          Clique em "Atualizar Lista" para carregar suas solicitações.
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- MODAL -->
+  <div class="modal" id="modalAdicionar">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Nova Solicitação</h2>
+        <p>Preencha os dados da manutenção.</p>
+      </div>
+      <form id="formSolicitacao">
+
+        <div class="form-group">
+          <label>Solicitante</label>
+          <div class="select-wrapper">
+            <select id="solicitanteAdd" required class="custom-select">
+              <option value="">Selecione</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Tipo de Manutenção</label>
+          <div class="select-wrapper">
+            <select id="tipoAdd" required class="custom-select">
+              <option value="">Selecione</option>
+              <option value="predial">Predial</option>
+              <option value="equipamento">Equipamento</option>
+              <option value="ti">TI</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Descrição do Problema</label>
+          <textarea id="descricaoAdd" placeholder="Descreva o problema detalhadamente..." required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label>Prioridade</label>
+          <div class="select-wrapper">
+            <select id="prioridadeAdd" required class="custom-select">
+              <option value="">Selecione</option>
+              <option value="baixa">Baixa</option>
+              <option value="media">Média</option>
+              <option value="alta">Alta</option>
+              <option value="critica">Crítica</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Status</label>
+          <div class="select-wrapper">
+            <select id="statusAdd" required class="custom-select" disabled>
+              <option value="aberta" selected>Aberta</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="modal-buttons">
+          <button type="button" class="cancel-button" onclick="fecharModal('modalAdicionar')">Cancelar</button>
+          <button type="button" onclick="validarFormulario()">Salvar Solicitação</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+  <footer id="rodape-usuario"></footer>
+
+  <script src="js/minhas_solicitacoes.js"></script>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById("mobileMenu");
+      const overlay = document.getElementById("mobileOverlay");
+      const btn = document.getElementById("hamburgerBtn");
+      const isOpen = menu.classList.contains("open");
+
+      if (isOpen) {
+        menu.classList.remove("open");
+        overlay.classList.remove("active");
+        btn.classList.remove("open");
+      } else {
+        menu.classList.add("open");
+        overlay.classList.add("active");
+        btn.classList.add("open");
+      }
+    }
+
+    function closeMobileMenu() {
+      document.getElementById("mobileMenu").classList.remove("open");
+      document.getElementById("mobileOverlay").classList.remove("active");
+      document.getElementById("hamburgerBtn").classList.remove("open");
+    }
+  </script>
+
+  <script src="js/ui-enhancements.js"></script>
+</body>
+</html>

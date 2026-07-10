@@ -1,0 +1,373 @@
+<!-- Gerenciamentos.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Gestão de Usuários</title>
+
+    <link rel="stylesheet" href="css/tokens.css">
+    <link rel="stylesheet" href="css/Gerenciamentos.css">
+
+        <link rel="stylesheet" href="css/ui-enhancements.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="layout">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+
+            <div class="logo">
+                <h2>SupportDesk</h2>
+            </div>
+
+            <nav>
+
+                <a href="Dashboard.html">
+                    Dashboard
+                </a>
+
+                <a href="Solicitacoes.html">
+                    Solicitações
+                </a>
+
+                <a href="#" class="active">
+                    Usuários
+                </a>
+
+                <a href="Funcionalidades.html">
+                    Funcionalidades
+                </a>
+
+                <a href="Relatorios.html">
+                    Relatórios
+                </a>
+
+                <a href="index.html">
+                    Logout
+                </a>
+
+            </nav>
+
+        </aside>
+
+        <!-- CONTEÚDO -->
+        <main class="content">
+
+            <!-- HEADER -->
+            <section class="page-header">
+
+                <div class="header-text">
+
+                    <h1>Gestão de Usuários</h1>
+
+                    <p>
+                        Controle usuários, permissões e acessos do sistema.
+                    </p>
+
+                </div>
+
+                <button
+                    class="primary-button"
+                    onclick="abrirModalAdicionar()"
+                >
+                    + Novo Usuário
+                </button>
+
+            </section>
+            <section class="metrics-grid">
+
+                <div class="metric-card">
+
+                    <div class="metric-info">
+                        <span>Total de Usuários</span>
+                        <h2 id="totalUsuarios">0</h2>
+                    </div>
+
+                </div>
+
+                <div class="metric-card">
+
+                    <div class="metric-info">
+                        <span>Gestores</span>
+                        <h2 id="totalGestores">0</h2>
+                    </div>
+
+                </div>
+
+                <div class="metric-card">
+
+                    <div class="metric-info">
+                        <span>Técnicos</span>
+                        <h2 id="totalTecnicos">0</h2>
+                    </div>
+
+                </div>
+
+                <div class="metric-card">
+
+                    <div class="metric-info">
+                        <span>Solicitantes</span>
+                        <h2 id="totalSolicitantes">0</h2>
+                    </div>
+
+                </div>
+
+            </section>
+            <!-- CARD PRINCIPAL -->
+            <section class="main-card">
+
+                <!-- TOOLBAR -->
+                    <div class="toolbar">
+
+                        <div class="toolbar-left">
+
+                            <input
+                                type="text"
+                                id="buscarUsuario"
+                                placeholder="Buscar usuário por qualquer valor do nome..."
+                            >
+
+                        </div>
+
+                    <div class="toolbar-right">
+
+                        <span class="results-count">
+                            Usuários cadastrados
+                        </span>
+
+                        <a href="Solicitacoes.html" class="secondary-button">
+                            Solicitações
+                        </a>
+
+                    </div>
+
+                </div>
+
+                <!-- TABELA -->
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+                                <th>ID Usuário</th>
+                                <th>Usuário</th>
+                                <th>E-mail</th>
+                                <th>Perfil</th>
+                                <th>Telefone</th>
+                                <th>Ações</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="tabelausuarios"></tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+<form id ="formAdd">
+    <!-- MODAL ADICIONAR -->
+    <div class="modal" id="modalAdicionar">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h2>Novo Usuário</h2>
+
+                <p>
+                    Preencha as informações para cadastrar um usuário.
+                </p>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Nome</label>
+                <input id="nomeAdd"required >
+
+            </div>
+
+            <div class="form-group">
+
+                <label>E-mail</label>
+                <input id="emailAdd"required>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Senha</label>
+                <input id="senhaAdd" type="password"required>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Tipo de Usuário</label>
+
+                <select id="tipo_usuarioAdd"required>
+
+                    <option value="">Selecione</option>
+
+                    <option value="manutentor">
+                        Responsável pela Manutenção
+                    </option>
+
+                    <option value="gestor">
+                        Gestor
+                    </option>
+
+                    <option value="solicitante">
+                        Solicitante
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Telefone</label>
+
+                <input
+                    id="telefoneAdd"
+                    placeholder="(32)99999-9999"
+                    required
+                >
+
+            </div>
+
+            <div class="modal-buttons">
+
+                <button
+                    class="secondary-modal-button"
+                    onclick="fecharModal('modalAdicionar')"
+                >
+                    Cancelar
+                </button>
+
+                <button type="button" onclick="validarFormularioAdd()">
+                    Salvar Usuário
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+</form>
+
+<form id="formEdit">
+    <!-- MODAL EDITAR -->
+    <div class="modal" id="modalEditar">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h2>Editar Usuário</h2>
+
+                <p>
+                    Atualize as informações do usuário selecionado.
+                </p>
+
+            </div>
+
+            <input id="idEdit" hidden>
+
+            <div class="form-group">
+
+                <label>Nome</label>
+                <input id="nomeEdit" required>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>E-mail</label>
+                <input id="emailEdit" required>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Senha</label>
+                <input id="senhaEdit" type="password" required>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Tipo de Usuário</label>
+
+                <select id="tipo_usuarioEdit" required>
+
+                    <option value="">Selecione</option>
+
+                    <option value="manutentor">
+                        Responsável pela Manutenção
+                    </option>
+
+                    <option value="gestor">
+                        Gestor
+                    </option>
+
+                    <option value="solicitante">
+                        Solicitante
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div class="form-group">
+
+                <label >Telefone</label>
+                <input required id="telefoneEdit">
+
+            </div>
+
+            <div class="modal-buttons">
+
+                <button
+                    class="secondary-modal-button"
+                    onclick="fecharModal('modalEditar')"
+                >
+                    Cancelar
+                </button>
+
+                <button type="button" onclick="validarFormularioEdit()">
+                    Atualizar Usuário
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+</form>
+    <footer id="rodape-usuario"></footer>
+
+    <script src="js/Gerenciamentos.js"></script>
+
+  <script src="js/ui-enhancements.js"></script>
+</body>
+
+</html>

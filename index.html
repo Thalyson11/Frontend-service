@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Chamados</title>
+
+    <link rel="stylesheet" href="css/tokens.css">
+    <link rel="stylesheet" href="css/style.css">
+
+        <link rel="stylesheet" href="css/ui-enhancements.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Configurações do PWA -->
+<link rel="manifest" href="manifest.json" />
+
+<!-- Cor da barra do navegador -->
+<meta name="theme-color" content="#0d6efd" />
+
+<!-- Tags para funcionar no iPhone (iOS) -->
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<meta name="apple-mobile-web-app-title" content="InovaWeb" />
+
+<!-- Ícones apontando para a pasta images -->
+<link rel="apple-touch-icon" href="image/icon-192.png" />
+<link rel="icon" type="image/png" href="image/icon-512.png" />
+</head>
+<div id="splash">
+  <div class="bg-dot" style="left:15%; animation-duration:7s; animation-delay:0s;"></div>
+  <div class="bg-dot" style="left:35%; animation-duration:9s; animation-delay:1.5s;"></div>
+  <div class="bg-dot" style="left:65%; animation-duration:8s; animation-delay:.7s;"></div>
+  <div class="bg-dot" style="left:80%; animation-duration:10s; animation-delay:2.3s;"></div>
+  <div class="bg-dot" style="left:50%; animation-duration:7.5s; animation-delay:3s;"></div>
+
+  <div class="support-animation">
+    <div class="pulse-ring"></div>
+
+    <div class="robot">
+      <div class="arm-group">
+        <div class="arm-segment upper"></div>
+        <div class="joint-ball elbow"></div>
+        <div class="arm-segment fore"></div>
+        <div class="hand-bot"></div>
+      </div>
+      <div class="chest">
+        <div class="panel-line top"></div>
+        <div class="panel-line bottom"></div>
+        <div class="core"></div>
+      </div>
+      <div class="shoulder left"></div>
+      <div class="shoulder right"></div>
+      <div class="neck"></div>
+      <div class="head">
+        <div class="antenna"></div>
+        <div class="antenna-tip"></div>
+        <div class="visor">
+          <div class="eye-bot left"></div>
+          <div class="eye-bot right"></div>
+        </div>
+        <div class="mouth-led"></div>
+      </div>
+      <div class="soundwave"></div>
+      <div class="soundwave w2"></div>
+      <div class="soundwave w3"></div>
+    </div>
+
+    <div class="ticket">
+      <div class="ticket-check">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+      </div>
+      <div class="line"></div>
+      <div class="line small"></div>
+    </div>
+  </div>
+
+  <h1>SupportDesk</h1>
+  <p>Conectando você ao suporte <span class="dots"><span></span><span></span><span></span></span></p>
+</div>
+
+    <div class="login-container">
+        <div class="login-card">
+
+            <div class="logo-area">
+                <h1>SupportDesk</h1>
+                <p>Acesse o sistema de chamados</p>
+            </div>
+
+            <form id="loginForm">
+                <div class="input-group">
+                    <label>Usuário</label>
+                    <input type="text" id="usuario" placeholder="Digite seu usuário" required>
+                </div>
+
+                <div class="input-group">
+                    <label>Senha</label>
+                    <input type="password" id="senha" placeholder="Digite sua senha" required>
+                </div>
+
+                <button type="submit">Entrar</button>
+            </form>
+
+            <p id="mensagem"></p>
+        </div>
+    </div>
+
+    <script src="js/juncao.js"></script>
+    
+    <script>
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.register('service-worker.js')
+            .then(() => console.log("Pronto! Seu site agora é um App."))
+            .catch((err) => console.log("Erro ao criar o App:", err));
+        }
+  
+    window.addEventListener("load", () => {
+
+    setTimeout(() => {
+        document.getElementById("splash").style.display = "none";
+    }, 3000);
+
+});
+      </script>
+  <script src="js/ui-enhancements.js"></script>
+</body>
+</html>

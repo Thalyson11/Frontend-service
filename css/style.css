@@ -1,0 +1,640 @@
+/* =========================================================================
+   LOGIN — style.css
+   Reestilizado sobre os tokens em tokens.css. IDs/classes usados pelo
+   JavaScript (juncao.js): #loginForm, #usuario, #senha, #mensagem,
+   .sucesso, .erro, .show, #splash — todos mantidos.
+========================================================================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--bg-app);
+  min-height: 100vh;
+  color: var(--text-primary);
+}
+
+/* Área principal */
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--space-5);
+}
+
+/* Card principal */
+.login-card {
+  width: 100%;
+  max-width: 420px;
+  background: var(--bg-surface);
+  padding: var(--space-8);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  transition: box-shadow var(--transition-base);
+}
+
+.login-card:hover {
+  box-shadow: 0 24px 56px rgba(30, 64, 175, 0.14);
+}
+
+/* Cabeçalho */
+.logo-area {
+  text-align: center;
+  margin-bottom: var(--space-7);
+}
+
+.logo-area h1 {
+  color: var(--brand-900);
+  font-size: var(--fs-3xl);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.logo-area p {
+  color: var(--text-secondary);
+  font-size: var(--fs-base);
+  margin-top: var(--space-2);
+}
+
+/* Formulário */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+/* Grupo dos campos */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+label {
+  color: var(--slate-700);
+  font-size: var(--fs-base);
+  font-weight: 600;
+}
+
+/* Inputs */
+input {
+  width: 100%;
+  padding: 13px 15px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--slate-300);
+  background: var(--bg-subtle);
+  font-size: var(--fs-md);
+  font-family: var(--font-sans);
+  color: var(--text-primary);
+  transition: border-color var(--transition-base), background var(--transition-base), box-shadow var(--transition-base);
+}
+
+input::placeholder {
+  color: var(--text-tertiary);
+}
+
+input:hover {
+  border-color: var(--brand-600);
+}
+
+input:focus {
+  outline: none;
+  background: var(--bg-surface);
+  border-color: var(--brand-600);
+  box-shadow: var(--shadow-focus);
+}
+
+/* Botão */
+button {
+  margin-top: var(--space-2);
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: var(--radius-md);
+  background: var(--brand-600);
+  color: white;
+  font-size: var(--fs-md);
+  font-family: var(--font-sans);
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: var(--shadow-brand);
+  transition: background var(--transition-base), transform var(--transition-base);
+}
+
+button:hover {
+  background: var(--brand-700);
+  transform: translateY(-1px);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--brand-500);
+  outline-offset: 2px;
+}
+
+/* Mensagem do sistema */
+#mensagem {
+  margin-top: var(--space-5);
+  text-align: center;
+  font-size: var(--fs-base);
+  display: none;
+}
+
+/* Classes já usadas pelo JavaScript */
+.sucesso {
+  color: var(--success-text);
+}
+
+.erro {
+  color: var(--danger-text);
+}
+
+.show {
+  display: block;
+}
+
+/* Tablet */
+@media(max-width:768px) {
+
+  .login-container {
+    padding: var(--space-4);
+  }
+
+  .login-card {
+    max-width: 380px;
+    padding: var(--space-7);
+  }
+}
+
+/* Celular */
+@media(max-width:480px) {
+
+  .login-container {
+    padding: var(--space-3);
+  }
+
+  .login-card {
+    padding: var(--space-6) var(--space-5);
+    border-radius: var(--radius-lg);
+  }
+
+  .logo-area h1 {
+    font-size: var(--fs-2xl);
+  }
+
+  input {
+    padding: 12px 13px;
+    font-size: var(--fs-base);
+  }
+
+  button {
+    padding: 13px;
+  }
+}
+
+/* Celulares pequenos */
+@media(max-width:350px) {
+
+  .login-card {
+    padding: var(--space-5) var(--space-4);
+  }
+
+  .logo-area h1 {
+    font-size: 22px;
+  }
+}
+
+/* =========================================================================
+   SPLASH — animação de carregamento SupportDesk
+========================================================================= */
+#splash {
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(37,99,235,.07), transparent 45%),
+    radial-gradient(circle at 80% 80%, rgba(37,99,235,.07), transparent 45%),
+    var(--bg-surface);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+/* partículas de fundo flutuando */
+.bg-dot {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--brand-600);
+  opacity: .12;
+  animation: subir 6s linear infinite;
+}
+@keyframes subir {
+  0%   { transform: translateY(0) scale(1); opacity: 0; }
+  10%  { opacity: .16; }
+  90%  { opacity: .16; }
+  100% { transform: translateY(-120vh) scale(.5); opacity: 0; }
+}
+
+#splash h1 {
+  margin-top: 30px;
+  color: var(--brand-900);
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: -.02em;
+  opacity: 0;
+  animation: surgirTexto .7s ease-out .3s forwards;
+}
+#splash p {
+  margin-top: var(--space-2);
+  color: var(--text-secondary);
+  font-size: var(--fs-md);
+  opacity: 0;
+  animation: surgirTexto .7s ease-out .5s forwards;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+@keyframes surgirTexto {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* pontinhos de "carregando" depois do texto */
+.dots span {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--text-tertiary);
+  display: inline-block;
+  animation: pulsarPonto 1.2s ease-in-out infinite;
+}
+.dots span:nth-child(2) { animation-delay: .2s; }
+.dots span:nth-child(3) { animation-delay: .4s; }
+@keyframes pulsarPonto {
+  0%, 80%, 100% { opacity: .3; transform: scale(1); }
+  40% { opacity: 1; transform: scale(1.3); }
+}
+
+/* container animação */
+.support-animation {
+  width: 200px;
+  height: 190px;
+  position: relative;
+  animation: flutuar 3s infinite ease-in-out;
+}
+
+/* anel pulsante atrás do robô (sinal de "online") */
+.pulse-ring {
+  position: absolute;
+  left: 46px;
+  top: 34px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: rgba(37,99,235,.16);
+  animation: pulsarAnel 2.4s ease-out infinite;
+}
+@keyframes pulsarAnel {
+  0%   { transform: scale(.7); opacity: .55; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+/* ===== robô mascote ===== */
+.robot {
+  position: absolute;
+  left: 8px;
+  top: 2px;
+  width: 174px;
+  height: 186px;
+  z-index: 2;
+}
+
+/* peito / torso */
+.chest {
+  position: absolute;
+  left: 33px;
+  bottom: 0;
+  width: 104px;
+  height: 76px;
+  background: linear-gradient(160deg, #f8fafc 0%, #cbd5e1 30%, #60a5fa 68%, #1d4ed8 100%);
+  border-radius: 38px 38px 26px 26px;
+  box-shadow:
+    0 14px 22px rgba(15,23,42,.24),
+    inset 0 3px 5px rgba(255,255,255,.55),
+    inset 0 -12px 16px rgba(15,23,42,.16);
+}
+.panel-line {
+  position: absolute;
+  left: 24px;
+  width: 56px;
+  height: 2px;
+  background: rgba(15,23,42,.14);
+  border-radius: 2px;
+}
+.panel-line.top    { top: 10px; }
+.panel-line.bottom { top: 52px; }
+
+/* núcleo luminoso no peito */
+.core {
+  position: absolute;
+  left: 38px;
+  top: 18px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #ffffff, #7dd3fc 45%, #2563eb 85%);
+  box-shadow: 0 0 16px 5px rgba(59,130,246,.6), inset 0 1px 2px rgba(255,255,255,.8);
+  animation: pulsarCore 2.2s ease-in-out infinite;
+}
+@keyframes pulsarCore {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50%      { transform: scale(1.14); opacity: .82; }
+}
+
+/* juntas dos ombros */
+.shoulder {
+  position: absolute;
+  top: -2px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #f8fafc, #cbd5e1 55%, #64748b 100%);
+  box-shadow: 0 2px 5px rgba(15,23,42,.28), inset 0 1px 2px rgba(255,255,255,.7);
+}
+.shoulder.left  { left: -4px; }
+.shoulder.right { right: -4px; }
+
+/* pescoço */
+.neck {
+  position: absolute;
+  left: 73px;
+  bottom: 70px;
+  width: 24px;
+  height: 18px;
+  background: linear-gradient(180deg, #e2e8f0, #94a3b8);
+  border-radius: 6px;
+  box-shadow: inset 0 -3px 5px rgba(15,23,42,.22);
+}
+
+/* cabeça */
+.head {
+  position: absolute;
+  left: 29px;
+  bottom: 84px;
+  width: 96px;
+  height: 80px;
+  background: linear-gradient(160deg, #fbfdff 0%, #dbeafe 32%, #93c5fd 64%, #3b82f6 100%);
+  border-radius: 34px 34px 38px 38px;
+  box-shadow:
+    0 12px 20px rgba(15,23,42,.22),
+    inset 0 4px 7px rgba(255,255,255,.6),
+    inset 0 -9px 13px rgba(15,23,42,.12);
+}
+.head::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: 14px;
+  width: 30px;
+  height: 16px;
+  background: radial-gradient(ellipse, rgba(255,255,255,.85), transparent 70%);
+  border-radius: 50%;
+}
+
+/* viseira */
+.visor {
+  position: absolute;
+  top: 26px;
+  left: 14px;
+  width: 68px;
+  height: 34px;
+  background: linear-gradient(160deg, #1e293b, #0f172a);
+  border-radius: 18px;
+  box-shadow: inset 0 3px 6px rgba(0,0,0,.5), 0 1px 2px rgba(255,255,255,.16);
+}
+
+/* olhos com brilho */
+.eye-bot {
+  position: absolute;
+  top: 7px;
+  width: 16px;
+  height: 20px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 25%, #e0f2fe, #38bdf8 50%, #0ea5e9 90%);
+  box-shadow: 0 0 12px 3px rgba(56,189,248,.75);
+  animation: piscarRobo 4.5s ease-in-out infinite;
+}
+.eye-bot.left  { left: 10px; }
+.eye-bot.right { left: 42px; }
+@keyframes piscarRobo {
+  0%, 88%, 100% { transform: scaleY(1); }
+  93%           { transform: scaleY(.12); }
+}
+
+/* boca em LED, "fala" pulsando */
+.mouth-led {
+  position: absolute;
+  left: 31px;
+  bottom: 10px;
+  width: 34px;
+  height: 6px;
+  background: linear-gradient(90deg, #1d4ed8, #7dd3fc, #1d4ed8);
+  border-radius: 6px;
+  box-shadow: 0 0 9px 2px rgba(56,189,248,.6);
+  animation: falarBoca 1.6s ease-in-out infinite;
+}
+@keyframes falarBoca {
+  0%, 100% { transform: scaleX(.65); }
+  50%      { transform: scaleX(1); }
+}
+
+/* antena */
+.antenna {
+  position: absolute;
+  left: 46px;
+  top: -20px;
+  width: 5px;
+  height: 22px;
+  background: linear-gradient(180deg, #94a3b8, #475569);
+  border-radius: 3px;
+  transform-origin: bottom center;
+  animation: oscilarAntena 3s ease-in-out infinite;
+}
+.antenna-tip {
+  position: absolute;
+  left: 43px;
+  top: -30px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #fff7e6, #fbbf24 60%, #f59e0b 100%);
+  box-shadow: 0 0 10px 3px rgba(251,191,36,.75);
+  animation: oscilarAntena 3s ease-in-out infinite, brilharAntena 1.8s ease-in-out infinite;
+}
+@keyframes oscilarAntena {
+  0%, 100% { transform: rotate(0deg); }
+  50%      { transform: rotate(7deg); }
+}
+@keyframes brilharAntena {
+  0%, 100% { box-shadow: 0 0 10px 3px rgba(251,191,36,.75); }
+  50%      { box-shadow: 0 0 16px 6px rgba(251,191,36,.95); }
+}
+
+/* braço robótico acenando, segmentado por juntas */
+.arm-group {
+  position: absolute;
+  right: 0;
+  bottom: 42px;
+  width: 22px;
+  height: 72px;
+  transform-origin: 50% 6%;
+  animation: acenarRobo 1.8s ease-in-out infinite;
+}
+.arm-segment {
+  position: absolute;
+  border-radius: 7px;
+  background: linear-gradient(160deg, #f1f5f9, #93c5fd 55%, #2563eb 100%);
+  box-shadow: 0 2px 4px rgba(15,23,42,.26), inset 0 1px 2px rgba(255,255,255,.55);
+}
+.arm-segment.upper { top: 16px; left: 5px; width: 12px; height: 24px; }
+.arm-segment.fore   { top: 48px; left: 6px; width: 10px; height: 20px; }
+.joint-ball {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #f8fafc, #cbd5e1 55%, #64748b 100%);
+  box-shadow: 0 2px 4px rgba(15,23,42,.28), inset 0 1px 2px rgba(255,255,255,.7);
+}
+.joint-ball.elbow { top: 38px; left: 4px; width: 14px; height: 14px; }
+.hand-bot {
+  position: absolute;
+  top: 64px;
+  left: 2px;
+  width: 18px;
+  height: 14px;
+  border-radius: 8px;
+  background: linear-gradient(160deg, #fbfdff, #cbd5e1 60%, #94a3b8 100%);
+  box-shadow: 0 2px 4px rgba(15,23,42,.24), inset 0 1px 2px rgba(255,255,255,.6);
+}
+@keyframes acenarRobo {
+  0%, 100% { transform: rotate(0deg); }
+  25%      { transform: rotate(-34deg); }
+  50%      { transform: rotate(-8deg); }
+  75%      { transform: rotate(-34deg); }
+}
+
+/* ondas sonoras saindo do robô, sinal de que está respondendo */
+.soundwave {
+  position: absolute;
+  right: 6px;
+  top: 42px;
+  width: 11px;
+  height: 11px;
+  border: 2px solid #60a5fa;
+  border-radius: 50%;
+  opacity: 0;
+  animation: ondaSom 1.8s ease-out infinite;
+}
+.soundwave.w2 { animation-delay: .5s; }
+.soundwave.w3 { animation-delay: 1s; }
+@keyframes ondaSom {
+  0%   { transform: scale(.4); opacity: .7; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+/* ticket / chamado */
+.ticket {
+  position: absolute;
+  bottom: 6px;
+  right: 4px;
+  width: 108px;
+  height: 78px;
+  background: var(--bg-surface);
+  border-radius: 14px;
+  padding: 14px;
+  box-shadow: 0 14px 30px rgba(37,99,235,.2), 0 2px 6px rgba(15,23,42,.06);
+  animation: abrirChamado 3s infinite;
+  z-index: 3;
+}
+.ticket-check {
+  position: absolute;
+  top: -9px;
+  right: -9px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--success-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: scale(0);
+  animation: marcarResolvido 3s infinite;
+}
+.ticket-check svg { width: 12px; height: 12px; }
+
+.line {
+  width: 62px;
+  height: 8px;
+  background: var(--brand-600);
+  border-radius: 20px;
+  margin-bottom: 9px;
+  position: relative;
+  overflow: hidden;
+}
+.line.small {
+  width: 42px;
+  background: var(--text-tertiary);
+}
+/* brilho passando pelas linhas, tipo "digitando/carregando" */
+.line::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.6), transparent);
+  transform: translateX(-100%);
+  animation: brilharLinha 2.4s infinite;
+}
+.line.small::after { animation-delay: .3s; }
+
+@keyframes flutuar {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50%      { transform: translateY(-16px) rotate(-1deg); }
+}
+@keyframes abrirChamado {
+  0%, 100% { transform: rotate(0deg) translateY(0); }
+  50%      { transform: rotate(6deg) translateY(-4px); }
+}
+@keyframes marcarResolvido {
+  0%, 55%  { transform: scale(0); }
+  65%, 90% { transform: scale(1); }
+  100%     { transform: scale(0); }
+}
+@keyframes brilharLinha {
+  0%   { transform: translateX(-100%); }
+  50%  { transform: translateX(100%); }
+  100% { transform: translateX(100%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .support-animation, .pulse-ring, .arm-group, .core, .eye-bot, .mouth-led,
+  .antenna, .antenna-tip, .soundwave, .ticket,
+  .ticket-check, .line::after, #splash h1, #splash p, .bg-dot, .dots span {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

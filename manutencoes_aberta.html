@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minhas Manutenções</title>
+    <link rel="stylesheet" href="css/tokens.css">
+    <link rel="stylesheet" href="css/manutencoes_aberta.css">
+    <link rel="stylesheet" href="css/ui-enhancements.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="layout">
+        <aside class="sidebar">
+            <div>
+                <h2 class="l">SupportDesk</h2>
+
+                <div class="logo-area">
+                    <div class="logo-icon">🛠</div>
+                    <div>
+                        <h2>Técnico</h2>
+                        <p>Painel do Técnico</p>
+                    </div>
+                </div>
+
+                <nav class="menu">
+                    <a href="#" class="active">🛠 Minhas Manutenções</a>
+                    <a href="RelatorioTecnico.html">📋 Meu Relatório</a>
+                    <a href="index.html">🚪 Logout</a>
+                </nav>
+            </div>
+        </aside>
+
+        <main class="content tecnico-content">
+            <section class="page-header tecnico-header">
+                <div class="header-text">
+                    <h1>Minhas Manutenções</h1>
+                    <p>Acompanhe as manutenções atribuídas a você e atualize o status dos chamados.</p>
+                </div>
+
+                <div class="header-actions tecnico-header-actions">
+                    <button type="button" class="secondary-button" onclick="minhas_manutencoes()">Atualizar minhas</button>
+                    <a href="RelatorioTecnico.html" class="secondary-button">Ver meu relatório</a>
+                </div>
+            </section>
+
+            <section class="main-card tecnico-list-card">
+                <div class="toolbar tecnico-toolbar">
+                    <div class="toolbar-left">
+                        <input type="text" id="buscarManutencaoTecnico" placeholder="Buscar por ID, solicitante, tipo, descrição, prioridade ou status...">
+                        <span class="results-count" id="contadorManutencoesTecnico">Carregando manutenções...</span>
+                    </div>
+
+                    <div class="toolbar-right">
+                        <button type="button" class="secondary-button" onclick="limparFiltrosTecnico()">Limpar filtros</button>
+                        <button type="button" onclick="buscar()">Chamados abertos</button>
+                    </div>
+                </div>
+
+                <div class="status-filter-bar" id="filtrosStatusTecnico" aria-label="Filtros por status">
+                    <button type="button" class="status-filter active" data-status="">Todas</button>
+                    <button type="button" class="status-filter status-aberta" data-status="aberta">Abertas</button>
+                    <button type="button" class="status-filter status-andamento" data-status="em andamento">Em andamento</button>
+                    <button type="button" class="status-filter status-concluida" data-status="concluida">Concluídas</button>
+                    <button type="button" class="status-filter status-cancelada" data-status="cancelada">Canceladas</button>
+                </div>
+
+                <div id="content" class="content-area loading">
+                    Carregando suas manutenções...
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div id="modalEncerrar" class="modal-overlay">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h2>Concluir Chamado</h2>
+                <button class="close-btn" onclick="fecharModalChamado()">✕</button>
+            </div>
+
+            <div class="modal-body">
+                <label>Solução aplicada</label>
+                <textarea id="solucao" placeholder="Digite a solução..."></textarea>
+                <div class="contador"><span id="contadorCaracteres">0</span>/500</div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn-cancelar" onclick="fecharModalChamado()">Cancelar</button>
+                <button class="btn-confirmar" onclick="encerrarChamado()">Finalizar chamado</button>
+            </div>
+        </div>
+    </div>
+
+    <footer id="rodape-usuario"></footer>
+
+    <script src="js/manutencoes_aberta.js"></script>
+    <script src="js/ui-enhancements.js"></script>
+</body>
+
+</html>

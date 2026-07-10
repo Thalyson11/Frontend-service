@@ -1,0 +1,93 @@
+/* ==========================================================================
+   DESIGN TOKENS — SupportDesk
+   Sistema de variáveis compartilhado por todas as páginas.
+   Não remove, não substitui os CSS existentes — apenas fornece a base
+   de cores, tipografia, espaçamento, sombras e raios utilizada por eles.
+   ========================================================================== */
+
+:root {
+  /* ---- Marca / Azul corporativo ---- */
+  --brand-50:  #eff6ff;
+  --brand-100: #dbeafe;
+  --brand-200: #bfdbfe;
+  --brand-500: #3b82f6;
+  --brand-600: #2563eb;
+  --brand-700: #1d4ed8;
+  --brand-900: #1e3a8a;
+
+  /* ---- Neutros (slate) ---- */
+  --slate-50:  #f8fafc;
+  --slate-100: #f1f5f9;
+  --slate-200: #e2e8f0;
+  --slate-300: #cbd5e1;
+  --slate-400: #94a3b8;
+  --slate-500: #64748b;
+  --slate-600: #475569;
+  --slate-700: #334155;
+  --slate-800: #1e293b;
+  --slate-900: #0f172a;
+
+  /* ---- Superfícies ---- */
+  --bg-app:      #f6f8fb;
+  --bg-surface:  #ffffff;
+  --bg-subtle:   #f8fafc;
+  --border-color:        #e6ebf2;
+  --border-color-strong: #d8dfea;
+
+  /* ---- Texto ---- */
+  --text-primary:   #0f172a;
+  --text-secondary: #64748b;
+  --text-tertiary:  #94a3b8;
+  --text-on-brand:  #ffffff;
+
+  /* ---- Semântico ---- */
+  --success-bg:   #dcfce7;
+  --success-text: #16a34a;
+  --danger-bg:    #fee2e2;
+  --danger-text:  #dc2626;
+  --warning-bg:   #fef3c7;
+  --warning-text: #b45309;
+  --info-bg:      #dbeafe;
+  --info-text:    #2563eb;
+
+  /* ---- Tipografia ---- */
+  --font-sans: 'Inter', -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --fs-xs:   12px;
+  --fs-sm:   13px;
+  --fs-base: 14px;
+  --fs-md:   15px;
+  --fs-lg:   16px;
+  --fs-xl:   19px;
+  --fs-2xl:  22px;
+  --fs-3xl:  28px;
+  --fs-4xl:  34px;
+
+  /* ---- Espaçamento ---- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-7: 28px;
+  --space-8: 32px;
+
+  /* ---- Raios ---- */
+  --radius-sm:   8px;
+  --radius-md:   10px;
+  --radius-lg:   14px;
+  --radius-xl:   18px;
+  --radius-full: 999px;
+
+  /* ---- Sombras ---- */
+  --shadow-xs: 0 1px 2px rgba(15, 23, 42, 0.04);
+  --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.05);
+  --shadow-md: 0 8px 24px rgba(15, 23, 42, 0.06);
+  --shadow-lg: 0 16px 40px rgba(15, 23, 42, 0.10);
+  --shadow-focus: 0 0 0 4px rgba(37, 99, 235, 0.14);
+  --shadow-brand: 0 8px 20px rgba(37, 99, 235, 0.18);
+
+  /* ---- Transições ---- */
+  --transition-fast: 120ms ease;
+  --transition-base: 200ms ease;
+}

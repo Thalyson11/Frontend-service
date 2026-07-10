@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="css/tokens.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+        <link rel="stylesheet" href="css/ui-enhancements.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="layout">
+    <aside class="sidebar">
+        <div class="logo">
+            <h2>SupportDesk</h2>
+        </div>
+
+        <nav aria-label="Navegação Principal">
+            <a href="Dashboard.html" class="active">Dashboard</a>
+            <a href="Solicitacoes.html">Solicitações</a>
+            <a href="Gerenciamentos.html">Usuários</a>
+            <a href="Funcionalidades.html">Funcionalidades</a>
+            <a href="Relatorios.html">Relatórios</a>
+            <a href="index.html">Logout</a>
+        </nav>
+    </aside>
+
+    <main class="content">
+        <header class="page-header">
+            <div>
+                <h1>Dashboard</h1>
+                <p>Visão geral do sistema de chamados, usuários e indicadores operacionais.</p>
+            </div>
+
+            <div class="header-actions">
+                <button type="button" class="secondary-button" id="btnAtualizarDashboard">Atualizar</button>
+                <a href="Relatorios.html" class="secondary-button">Ver relatórios</a>
+                <a href="Solicitacoes.html" class="primary-link-button">Solicitações</a>
+            </div>
+        </header>
+
+        <section class="metrics-grid" aria-label="Indicadores principais">
+            <div class="metric-card destaque">
+                <span>Total de Solicitações</span>
+                <h2 id="dashTotalSolicitacoes">0</h2>
+                <p>Chamados registrados</p>
+            </div>
+            <div class="metric-card">
+                <span>Abertas</span>
+                <h2 id="dashAbertas">0</h2>
+                <p>Aguardando início</p>
+            </div>
+            <div class="metric-card">
+                <span>Em andamento</span>
+                <h2 id="dashAndamento">0</h2>
+                <p>Em execução</p>
+            </div>
+            <div class="metric-card">
+                <span>Concluídas</span>
+                <h2 id="dashConcluidas">0</h2>
+                <p>Finalizadas</p>
+            </div>
+            <div class="metric-card">
+                <span>Críticas</span>
+                <h2 id="dashCriticas">0</h2>
+                <p>Prioridade máxima</p>
+            </div>
+            <div class="metric-card">
+                <span>Usuários</span>
+                <h2 id="dashUsuarios">0</h2>
+                <p>Cadastrados</p>
+            </div>
+        </section>
+
+        <section class="dashboard-grid">
+            <article class="panel-card performance-card">
+                <div class="panel-header">
+                    <div>
+                        <h3>Desempenho geral</h3>
+                        <p>Percentual de solicitações concluídas</p>
+                    </div>
+                    <span class="badge badge-status concluida" id="dashPercentualConcluido">0%</span>
+                </div>
+
+                <div class="progress-wrapper">
+                    <div class="progress-track">
+                        <div class="progress-fill" id="dashBarraConcluido"></div>
+                    </div>
+                </div>
+
+                <div class="mini-stats">
+                    <div>
+                        <strong id="dashPendentes">0</strong>
+                        <span>Pendentes</span>
+                    </div>
+                    <div>
+                        <strong id="dashCanceladas">0</strong>
+                        <span>Canceladas</span>
+                    </div>
+                    <div>
+                        <strong id="dashTecnicos">0</strong>
+                        <span>Técnicos</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="panel-card">
+                <div class="panel-header">
+                    <div>
+                        <h3>Solicitações por status</h3>
+                        <p>Distribuição atual dos chamados</p>
+                    </div>
+                </div>
+                <div id="dashStatusResumo" class="bar-list"></div>
+            </article>
+
+            <article class="panel-card">
+                <div class="panel-header">
+                    <div>
+                        <h3>Solicitações por prioridade</h3>
+                        <p>Classificação por nível de urgência</p>
+                    </div>
+                </div>
+                <div id="dashPrioridadeResumo" class="bar-list"></div>
+            </article>
+
+            <article class="panel-card quick-actions">
+                <div class="panel-header">
+                    <div>
+                        <h3>Ações rápidas</h3>
+                        <p>Acesse as principais áreas do sistema</p>
+                    </div>
+                </div>
+
+                <div class="action-list">
+                    <a href="Solicitacoes.html">
+                        <strong>Gerenciar solicitações</strong>
+                        <span>Criar, editar, filtrar e acompanhar chamados</span>
+                    </a>
+                    <a href="Gerenciamentos.html">
+                        <strong>Gerenciar usuários</strong>
+                        <span>Administrar gestores, técnicos e solicitantes</span>
+                    </a>
+                    <a href="Funcionalidades.html">
+                        <strong>Funcionalidades</strong>
+                        <span>Controlar recursos e módulos do sistema</span>
+                    </a>
+                    <a href="Relatorios.html">
+                        <strong>Relatórios</strong>
+                        <span>Consultar dados detalhados e exportar CSV</span>
+                    </a>
+                </div>
+            </article>
+        </section>
+
+        <section class="table-card">
+            <div class="table-title">
+                <div>
+                    <h3>Últimas solicitações</h3>
+                    <p id="dashAtualizacao">Carregando informações...</p>
+                </div>
+            </div>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Solicitante</th>
+                            <th>Tipo</th>
+                            <th>Prioridade</th>
+                            <th>Status</th>
+                            <th>Técnico</th>
+                        </tr>
+                    </thead>
+                    <tbody id="dashTabelaRecentes">
+                        <tr>
+                            <td colspan="6">Carregando solicitações...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+</div>
+
+<footer id="rodape-usuario"></footer>
+
+<script src="js/dashboard.js"></script>
+  <script src="js/ui-enhancements.js"></script>
+</body>
+</html>

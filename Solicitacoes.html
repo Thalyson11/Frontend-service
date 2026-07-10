@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão de Solicitações</title>
+    <link rel="stylesheet" href="css/tokens.css">
+    <link rel="stylesheet" href="css/Solicitacoes.css">
+        <link rel="stylesheet" href="css/ui-enhancements.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="layout">
+    <aside class="sidebar">
+        <div class="logo">
+            <h2>SupportDesk</h2>
+        </div>
+        <nav aria-label="Navegação Principal">
+            <a href="Dashboard.html">Dashboard</a>
+            <a href="#" class="active">Solicitações</a>
+            <a href="Gerenciamentos.html">Usuários</a>
+            <a href="Funcionalidades.html">Funcionalidades</a>
+            <a href="Relatorios.html">Relatórios</a>
+            <a href="index.html">Logout</a>
+        </nav>
+    </aside>
+
+    <main class="content">
+        <header class="page-header">
+            <div>
+                <h1>Gestão de Solicitações</h1>
+                <p>Gerencie chamados e acompanhe o fluxo operacional</p>
+            </div>
+
+            <div class="header-actions">
+                <div class="filtro-container">
+                    <button class="filtro-btn" onclick="toggleFiltro()">Filtrar</button>
+                    <div class="filtro-menu" id="menuFiltro">
+                        <button onclick="filtrar('aberta')">Abertas</button>
+                        <button onclick="filtrar('em andamento')">Em andamento</button>
+                        <button onclick="filtrar('concluida')">Concluídas</button>
+                        <button onclick="filtrar('cancelada')">Canceladas</button>
+                        <button onclick="listarsolicitacoes()">Todas</button>
+                    </div>
+                </div>
+
+                <button onclick="carregarSolicitantes('solicitante','solicitanteAdd'); carregarSolicitantes('gestor','solicitanteAdd'); abrirModalAdicionar(); carregarSolicitantes('manutentor','tecnicoAdd');">
+                    Nova Solicitação
+                </button>
+            </div>
+        </header>
+
+        <section class="table-card">
+            <div class="toolbar">
+                <div class="toolbar-left">
+                    <input type="text" id="buscarSolicitacoesGestor" placeholder="Pesquisar por ID, solicitante, tipo, prioridade, status ou técnico...">
+                    <span class="results-count" id="contadorSolicitacoesGestor">Solicitações cadastradas</span>
+                </div>
+                <div class="toolbar-right">
+                    <button type="button" class="secondary-button" id="btnLimparBuscaSolicitacoes">Limpar busca</button>
+                    <button type="button" class="secondary-button" onclick="listarsolicitacoes()">Atualizar lista</button>
+                </div>
+            </div>
+            <div class="local-search-history" aria-label="Últimas pesquisas"></div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Solicitante</th>
+                        <th>Tipo</th>
+                        <th>Descrição</th>
+                        <th>Prioridade</th>
+                        <th>Status</th>
+                        <th>Técnico</th>
+                        <th>Visualizar Solução</th>                     
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="tabelasolicitacoes"></tbody>
+            </table>
+        </section>
+    </main>
+</div>
+
+<div class="modal" id="modalAdicionar">
+    <div class="modal-content">
+        <h2>Nova Solicitação</h2>
+        <form id="formSolicitacaoAdd" onsubmit="event.preventDefault();">
+            <div class="form-group">
+                <label for="solicitanteAdd">Solicitante</label>
+                <select id="solicitanteAdd" required class="custom-select">
+                    <option value="">Selecione</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="tipoAdd">Tipo Manutenção</label>
+                <select id="tipoAdd" required class="custom-select">
+                    <option value="">Selecione</option>
+                    <option value="predial">Predial</option>
+                    <option value="equipamento">Equipamento</option>
+                    <option value="ti">TI</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="descricaoAdd">Descrição</label>
+                <textarea id="descricaoAdd" class="descricao-box" placeholder="Descreva detalhadamente o problema encontrado..." required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="tecnicoAdd">Técnico</label>
+                <select id="tecnicoAdd" class="custom-select">
+                    <option value="">Selecione</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="prioridadeAdd">Prioridade</label>
+                <select id="prioridadeAdd" required class="custom-select">
+                    <option value="">Selecione</option>
+                    <option value="baixa">Baixa</option>
+                    <option value="media">Média</option>
+                    <option value="alta">Alta</option>
+                    <option value="critica">Crítica</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="statusAdd">Status</label>
+                <select id="statusAdd" required class="custom-select">
+                    <option value="">Selecione</option>
+                    <option value="aberta">Aberta</option>
+                    <option value="em andamento">Em andamento</option>
+                    <option value="concluida">Concluída</option>
+                    <option value="cancelada">Cancelada</option>
+                </select>
+            </div>
+
+            <div class="modal-buttons">
+                <button type="button" class="btn-secondary" onclick="fecharModal('modalAdicionar')">Cancelar</button>
+                <button type="button" onclick="validarFormularioAdd()">Salvar</button>
+            </div>
+        </form>
+    </div>
+</div> 
+
+<div class="modal" id="modalEditar">
+    <div class="modal-content">
+        <h2>Editar Solicitação</h2>
+        <form id="formSolicitacaoEdit" onsubmit="event.preventDefault();">
+            <input id="idEdit" type="hidden">
+
+            <div class="form-group">
+                <label for="solicitanteEdit">Solicitante</label>
+                <select id="solicitanteEdit" required class="custom-select"></select>
+            </div>
+
+            <div class="form-group">
+                <label for="tipoEdit">Tipo</label>
+                <select id="tipoEdit" required class="custom-select">
+                    <option value="predial">Predial</option>
+                    <option value="equipamento">Equipamento</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="descricaoEdit">Descrição</label>
+                <textarea id="descricaoEdit" class="descricao-box" placeholder="Descreva o problema" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="tecnicoEdit">Técnico</label>
+                <select id="tecnicoEdit" class="custom-select"></select>
+            </div>
+
+            <div class="form-group">
+                <label for="prioridadeEdit">Prioridade</label>
+                <select id="prioridadeEdit" required class="custom-select">
+                    <option value="baixa">Baixa</option>
+                    <option value="media">Média</option>
+                    <option value="alta">Alta</option>
+                    <option value="critica">Crítica</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="statusEdit">Status</label>
+                <select id="statusEdit" required class="custom-select">
+                    <option value="aberta">Aberta</option>
+                    <option value="em andamento">Em andamento</option>
+                    <option value="concluida">Concluída</option>
+                    <option value="cancelada">Cancelada</option>
+                </select>
+            </div>
+
+            <div class="modal-buttons">
+                <button type="button" class="btn-secondary" onclick="fecharModal('modalEditar')">Cancelar</button>
+                <button type="button" onclick="validarFormularioEdit()">Atualizar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="modal" id="modalSolucao">
+    <div class="modal-content modal-solucao">
+        <h2>Detalhes da Solução</h2>
+        <div class="solucao-info">
+            <span class="label-simulado">Solução</span>
+            <div id="textoSolucao" class="box-solucao"></div>
+
+            <span class="label-simulado">Data da Conclusão</span>
+            <div id="dataSolucao" class="box-data"></div>
+        </div>
+        <div class="modal-buttons">
+            <button class="btn-secondary" onclick="fecharModal('modalSolucao')">Fechar</button>
+        </div>
+    </div>
+</div>
+
+<footer id="rodape-usuario"></footer>
+
+<script src="js/Solicitacoes.js"></script>
+  <script src="js/ui-enhancements.js"></script>
+</body>
+</html>

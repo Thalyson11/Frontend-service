@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funcionalidades</title>
+    <link rel="stylesheet" href="css/tokens.css">
+    <link rel="stylesheet" href="css/funcionalidades.css">
+        <link rel="stylesheet" href="css/ui-enhancements.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="layout">
+    <aside class="sidebar">
+        <div class="logo">
+            <h2>SupportDesk</h2>
+        </div>
+
+        <nav aria-label="Navegação Principal">
+            <a href="Dashboard.html">Dashboard</a>
+            <a href="Solicitacoes.html">Solicitações</a>
+            <a href="Gerenciamentos.html">Usuários</a>
+            <a href="Funcionalidades.html" class="active">Funcionalidades</a>
+            <a href="Relatorios.html">Relatórios</a>
+            <a href="index.html">Logout</a>
+        </nav>
+    </aside>
+
+    <main class="content">
+        <header class="page-header">
+            <div>
+                <h1>Funcionalidades</h1>
+                <p>Controle e documente os recursos disponíveis no sistema sem alterar o backend.</p>
+            </div>
+
+            <button type="button" id="btnNovaFuncionalidade">+ Nova Funcionalidade</button>
+        </header>
+
+        <section class="metrics-grid" aria-label="Resumo das funcionalidades">
+            <div class="metric-card">
+                <span>Total</span>
+                <h2 id="totalFuncionalidades">0</h2>
+            </div>
+            <div class="metric-card">
+                <span>Ativas</span>
+                <h2 id="totalAtivas">0</h2>
+            </div>
+            <div class="metric-card">
+                <span>Em melhoria</span>
+                <h2 id="totalMelhoria">0</h2>
+            </div>
+            <div class="metric-card">
+                <span>Planejadas</span>
+                <h2 id="totalPlanejadas">0</h2>
+            </div>
+        </section>
+
+        <section class="main-card">
+            <div class="toolbar">
+                <div class="toolbar-left">
+                    <input type="text" id="buscarFuncionalidade" placeholder="Buscar funcionalidade, módulo ou descrição...">
+                </div>
+                <div class="toolbar-right">
+                    <span class="results-count" id="contadorResultados">Funcionalidades cadastradas</span>
+                </div>
+            </div>
+
+            <div class="feature-panel" id="formPanel">
+                <form id="formFuncionalidade">
+                    <input type="hidden" id="funcionalidadeId">
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="nomeFuncionalidade">Nome</label>
+                            <input id="nomeFuncionalidade" required placeholder="Ex: Relatórios gerenciais">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="moduloFuncionalidade">Módulo</label>
+                            <select id="moduloFuncionalidade" required>
+                                <option value="">Selecione</option>
+                                <option value="Gestor">Gestor</option>
+                                <option value="Solicitante">Solicitante</option>
+                                <option value="Técnico">Técnico</option>
+                                <option value="Autenticação">Autenticação</option>
+                                <option value="Sistema">Sistema</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="statusFuncionalidade">Status</label>
+                            <select id="statusFuncionalidade" required>
+                                <option value="Ativa">Ativa</option>
+                                <option value="Em melhoria">Em melhoria</option>
+                                <option value="Planejada">Planejada</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="descricaoFuncionalidade">Descrição</label>
+                        <textarea id="descricaoFuncionalidade" required placeholder="Descreva a funcionalidade e sua finalidade no sistema."></textarea>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="secondary-button" id="btnCancelarEdicao">Cancelar</button>
+                        <button type="submit" id="btnSalvarFuncionalidade">Salvar Funcionalidade</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Funcionalidade</th>
+                            <th>Módulo</th>
+                            <th>Status</th>
+                            <th>Descrição</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabelaFuncionalidades"></tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+</div>
+
+<footer id="rodape-usuario"></footer>
+
+<script src="js/funcionalidades.js"></script>
+  <script src="js/ui-enhancements.js"></script>
+</body>
+</html>

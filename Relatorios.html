@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatórios</title>
+    <link rel="stylesheet" href="css/tokens.css">
+    <link rel="stylesheet" href="css/relatorios.css">
+        <link rel="stylesheet" href="css/ui-enhancements.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="layout">
+    <aside class="sidebar">
+        <div class="logo">
+            <h2>SupportDesk</h2>
+        </div>
+
+        <nav aria-label="Navegação Principal">
+            <a href="Dashboard.html">Dashboard</a>
+            <a href="Solicitacoes.html">Solicitações</a>
+            <a href="Gerenciamentos.html">Usuários</a>
+            <a href="Funcionalidades.html">Funcionalidades</a>
+            <a href="Relatorios.html" class="active">Relatórios</a>
+            <a href="index.html">Logout</a>
+        </nav>
+    </aside>
+
+    <main class="content">
+        <header class="page-header">
+            <div>
+                <h1>Relatórios</h1>
+                <p>Indicadores do sistema gerados a partir das solicitações e usuários cadastrados.</p>
+            </div>
+
+            <div class="header-actions">
+                <button type="button" class="secondary-button" id="btnAtualizar">Atualizar</button>
+                <button type="button" class="secondary-button" id="btnExportar">Exportar CSV</button>
+                <button type="button" id="btnImprimir">Imprimir</button>
+            </div>
+        </header>
+
+        <section class="metrics-grid" aria-label="Resumo geral">
+            <div class="metric-card">
+                <span>Total de Solicitações</span>
+                <h2 id="totalSolicitacoes">0</h2>
+            </div>
+            <div class="metric-card">
+                <span>Abertas</span>
+                <h2 id="totalAbertas">0</h2>
+            </div>
+            <div class="metric-card">
+                <span>Em andamento</span>
+                <h2 id="totalAndamento">0</h2>
+            </div>
+            <div class="metric-card">
+                <span>Concluídas</span>
+                <h2 id="totalConcluidas">0</h2>
+            </div>
+            <div class="metric-card">
+                <span>Canceladas</span>
+                <h2 id="totalCanceladas">0</h2>
+            </div>
+            <div class="metric-card">
+                <span>Usuários</span>
+                <h2 id="totalUsuarios">0</h2>
+            </div>
+        </section>
+
+        <section class="main-card">
+            <div class="toolbar">
+                <div class="toolbar-left">
+                    <input type="text" id="buscaRelatorio" placeholder="Buscar por solicitante, técnico, tipo ou descrição...">
+                </div>
+
+                <div class="toolbar-right">
+                    <select id="filtroStatus" aria-label="Filtrar por status">
+                        <option value="">Todos os status</option>
+                        <option value="aberta">Aberta</option>
+                        <option value="em andamento">Em andamento</option>
+                        <option value="concluida">Concluída</option>
+                        <option value="cancelada">Cancelada</option>
+                    </select>
+
+                    <select id="filtroPrioridade" aria-label="Filtrar por prioridade">
+                        <option value="">Todas as prioridades</option>
+                        <option value="baixa">Baixa</option>
+                        <option value="media">Média</option>
+                        <option value="alta">Alta</option>
+                        <option value="critica">Crítica</option>
+                    </select>
+
+                    <button type="button" class="secondary-button" id="btnFavoritarFiltros">Favoritar filtros</button>
+                    <select id="filtrosFavoritosRelatorio" aria-label="Filtros favoritos">
+                        <option value="">Filtros favoritos</option>
+                    </select>
+                    <button type="button" class="secondary-button" id="btnLimparFiltros">Limpar</button>
+                </div>
+            </div>
+
+            <div class="report-grid">
+                <div class="report-box">
+                    <h3>Solicitações por prioridade</h3>
+                    <div id="prioridadeResumo" class="bar-list"></div>
+                </div>
+
+                <div class="report-box">
+                    <h3>Solicitações por status</h3>
+                    <div id="statusResumo" class="bar-list"></div>
+                </div>
+            </div>
+
+            <div class="table-section">
+                <div class="table-title">
+                    <div>
+                        <h3>Relatório detalhado</h3>
+                        <p id="totalFiltrado">0 registros encontrados</p>
+                    </div>
+                </div>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Solicitante</th>
+                                <th>Tipo</th>
+                                <th>Prioridade</th>
+                                <th>Status</th>
+                                <th>Técnico</th>
+                                <th>Conclusão</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabelaRelatorio">
+                            <tr>
+                                <td colspan="7">Carregando relatório...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
+
+<footer id="rodape-usuario"></footer>
+
+<script src="js/relatorios.js"></script>
+  <script src="js/ui-enhancements.js"></script>
+</body>
+</html>
