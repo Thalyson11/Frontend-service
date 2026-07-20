@@ -1,4 +1,4 @@
-const API_URL = "https://backend-service-production-e5a3.up.railway.app/Manutencao"
+const API_URL = "https://backend-service-production-ac30.up.railway.app/Manutencao"
 
 async function listarusuarios() {
 
@@ -192,7 +192,7 @@ function validarFormularioEdit() {
   
   async function buscarUsuarios(letra) {
     try {
-        const response = await fetch(`https://backend-service-production-e5a3.up.railway.app/Manutencao/nome/${letra}`);
+        const response = await fetch(`https://backend-service-production-ac30.up.railway.app/Manutencao/nome/${letra}`);
 
         if (!response.ok) {
             throw new Error("Erro na requisição");

@@ -325,10 +325,6 @@
             toolbar.className = "sd-table-toolbar";
             toolbar.innerHTML = `
                 <span class="sd-table-counter">0 registros</span>
-                <div class="sd-table-actions">
-                    <button type="button" class="secondary-button sd-export-table">Exportar CSV</button>
-                    <button type="button" class="secondary-button sd-print-table">Imprimir</button>
-                </div>
             `;
             wrapper.parentElement.insertBefore(toolbar, wrapper);
             toolbar.querySelector(".sd-export-table").addEventListener("click", () => exportTableCsv(table));
@@ -529,6 +525,57 @@
         observer.observe(document.body, { childList: true, subtree: true });
     }
 
+    /* ---------------------------------------------------------------
+       NAVEGAÇÃO MOBILE — componente único usado em todas as telas.
+       Desktop: sidebar sempre visível. Tablet/Celular: sidebar oculta,
+       barra superior com botão hambúrguer abre o menu em overlay.
+       --------------------------------------------------------------- */
+    function toggleMenu() {
+        const menu = document.getElementById("mobileMenu");
+        const overlay = document.getElementById("mobileOverlay");
+        const btn = document.getElementById("hamburgerBtn");
+        if (!menu || !overlay || !btn) return;
+        const isOpen = menu.classList.contains("open");
+        menu.classList.toggle("open", !isOpen);
+        overlay.classList.toggle("active", !isOpen);
+        btn.classList.toggle("open", !isOpen);
+        btn.setAttribute("aria-expanded", String(!isOpen));
+        document.body.classList.toggle("sd-menu-open", !isOpen);
+    }
+
+    function closeMobileMenu() {
+        const menu = document.getElementById("mobileMenu");
+        const overlay = document.getElementById("mobileOverlay");
+        const btn = document.getElementById("hamburgerBtn");
+        if (!menu || !overlay || !btn) return;
+        menu.classList.remove("open");
+        overlay.classList.remove("active");
+        btn.classList.remove("open");
+        btn.setAttribute("aria-expanded", "false");
+        document.body.classList.remove("sd-menu-open");
+    }
+
+    function setupMobileNav() {
+        const menu = document.getElementById("mobileMenu");
+        if (!menu) return;
+
+        // Fecha automaticamente o menu ao escolher qualquer opção
+        menu.querySelectorAll("a").forEach((link) => {
+            link.addEventListener("click", () => closeMobileMenu());
+        });
+
+        // Fecha com a tecla Esc
+        document.addEventListener("keydown", (evt) => {
+            if (evt.key === "Escape") closeMobileMenu();
+        });
+
+        // Se a tela crescer para desktop, garante que o menu não fique
+        // "preso" aberto quando a sidebar normal reaparecer
+        window.addEventListener("resize", () => {
+            if (window.innerWidth > 980) closeMobileMenu();
+        });
+    }
+
     function init() {
         document.body.classList.add("page-ready");
         setupThemeToggle();
@@ -542,8 +589,12 @@
         setupKeyboardShortcuts();
         setupInputHistory();
         setupTooltips();
+        setupMobileNav();
         observeDynamicContent();
     }
+
+    window.toggleMenu = toggleMenu;
+    window.closeMobileMenu = closeMobileMenu;
 
     window.SupportDeskUI = {
         normalizar,

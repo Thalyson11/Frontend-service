@@ -1,0 +1,342 @@
+/* =========================================================================
+   NAV.CSS — Componente único de navegação e layout do SupportDesk
+   -------------------------------------------------------------------------
+   Esta é a ÚNICA fonte de verdade para o "casco" da aplicação:
+   .layout / .sidebar / .menu / .mobile-header / .hamburger / .mobile-menu /
+   .mobile-overlay / .main-content
+
+   Usada por TODAS as telas (Administrador, Técnico, Solicitante e Login),
+   garantindo que todos os perfis compartilhem exatamente a mesma
+   identidade visual, estrutura e comportamento responsivo. A única coisa
+   que muda entre perfis é o conteúdo dos links do menu e o rótulo/ícone
+   de perfil — nunca o componente em si.
+
+   Comportamento responsivo:
+     Desktop (> 980px): sidebar sempre visível, fixa à esquerda.
+     Tablet e Celular (<= 980px): sidebar oculta; barra superior com
+       botão hambúrguer abre o menu como um overlay sobre o conteúdo.
+   ========================================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--bg-app);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+}
+
+.layout {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+/* ---------------------------------------------------------------------
+   SIDEBAR (desktop) — mesma aparência em todos os perfis
+   --------------------------------------------------------------------- */
+.sidebar {
+  width: 264px;
+  flex-shrink: 0;
+  background: var(--bg-surface);
+  border-right: 1px solid var(--border-color);
+  padding: var(--space-7) var(--space-5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  overflow-y: auto;
+  z-index: 100;
+}
+
+.sidebar .l {
+  margin-bottom: var(--space-8);
+  font-size: var(--fs-2xl);
+  font-weight: 700;
+  color: var(--brand-900);
+  letter-spacing: -0.02em;
+}
+
+/* Cabeçalho de identidade do perfil (ícone + nome + subtítulo) */
+.logo-area {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin-bottom: var(--space-8);
+}
+
+.logo-area .logo-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-lg);
+  background: var(--brand-600);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: var(--fs-lg);
+  color: #ffffff;
+  flex-shrink: 0;
+}
+
+.logo-area h2 {
+  font-size: var(--fs-lg);
+  color: var(--brand-900);
+  font-weight: 700;
+}
+
+.logo-area p {
+  color: var(--text-secondary);
+  font-size: var(--fs-sm);
+}
+
+/* Compatibilidade com o antigo cabeçalho simples ".logo" (mantém a mesma
+   aparência do restante do sistema, apenas sem ícone de perfil) */
+.sidebar .logo {
+  margin-bottom: var(--space-8);
+  padding: 0 var(--space-2);
+}
+
+.sidebar .logo h2 {
+  font-size: var(--fs-2xl);
+  font-weight: 700;
+  color: var(--brand-900);
+  letter-spacing: -0.02em;
+}
+
+/* Links do menu (desktop) */
+.sidebar nav,
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.sidebar nav a,
+.menu a {
+  text-decoration: none;
+  color: var(--slate-600);
+  padding: 13px 16px;
+  border-radius: var(--radius-md);
+  transition: background var(--transition-base), color var(--transition-base);
+  font-size: var(--fs-base);
+  font-weight: 600;
+}
+
+.sidebar nav a:hover,
+.menu a:hover {
+  background: var(--brand-50);
+  color: var(--brand-600);
+}
+
+.sidebar nav a.active,
+.menu a.active {
+  background: var(--brand-600);
+  color: #ffffff;
+  box-shadow: var(--shadow-brand);
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--brand-500);
+  outline-offset: 2px;
+}
+
+/* ---------------------------------------------------------------------
+   MOBILE HEADER — barra superior fixa, oculta no desktop
+   --------------------------------------------------------------------- */
+.mobile-header {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border-color);
+  padding: 0 var(--space-5);
+  align-items: center;
+  justify-content: space-between;
+  z-index: 200;
+  box-shadow: var(--shadow-sm);
+}
+
+.mobile-brand {
+  font-size: var(--fs-lg);
+  font-weight: 700;
+  color: var(--brand-900);
+}
+
+/* Botão hambúrguer — idêntico em todas as telas */
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--space-2);
+  border-radius: var(--radius-sm);
+  transition: background var(--transition-fast);
+  box-shadow: none;
+}
+
+.hamburger:hover {
+  background: var(--slate-100);
+  box-shadow: none;
+}
+
+.hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--slate-700);
+  border-radius: 2px;
+  transition: all var(--transition-base);
+  transform-origin: center;
+}
+
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ---------------------------------------------------------------------
+   MOBILE MENU — painel que desliza abaixo da barra superior
+   --------------------------------------------------------------------- */
+.mobile-menu {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  right: 0;
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border-color);
+  flex-direction: column;
+  z-index: 199;
+  padding: 0 var(--space-3);
+  gap: var(--space-1);
+  box-shadow: var(--shadow-lg);
+  max-height: 0;
+  overflow: hidden auto;
+  visibility: hidden;
+  transition: max-height var(--transition-base), padding var(--transition-base), visibility var(--transition-base);
+}
+
+.mobile-menu.open {
+  max-height: min(70vh, 420px);
+  padding: var(--space-2) var(--space-3) var(--space-4);
+  visibility: visible;
+}
+
+.mobile-menu a {
+  text-decoration: none;
+  color: var(--slate-600);
+  padding: 13px 16px;
+  border-radius: var(--radius-md);
+  font-size: var(--fs-md);
+  font-weight: 600;
+  transition: background var(--transition-fast), color var(--transition-fast);
+  display: block;
+}
+
+.mobile-menu a:hover {
+  background: var(--brand-50);
+  color: var(--brand-600);
+}
+
+.mobile-menu a.active,
+.mobile-menu a:first-child {
+  background: var(--brand-600);
+  color: #ffffff;
+}
+
+/* Overlay escuro atrás do menu mobile, fecha o menu ao ser clicado */
+.mobile-overlay {
+  position: fixed;
+  inset: 60px 0 0 0;
+  background: rgba(15, 23, 42, 0.4);
+  z-index: 198;
+  backdrop-filter: blur(2px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition-base), visibility var(--transition-base);
+}
+
+.mobile-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ---------------------------------------------------------------------
+   CONTEÚDO PRINCIPAL — mesmo comportamento em todas as telas
+   --------------------------------------------------------------------- */
+.main-content {
+  flex: 1;
+  min-width: 0;
+  margin-left: 264px;
+  width: calc(100% - 264px);
+  padding: var(--space-7);
+}
+
+/* =========================================================================
+   RESPONSIVO — TABLET E CELULAR
+   A partir de 980px a sidebar de desktop desaparece e o cabeçalho/menu
+   mobile assumem a navegação (idêntico em toda a aplicação).
+   ========================================================================= */
+@media (max-width: 980px) {
+  .sidebar {
+    display: none;
+  }
+
+  .mobile-header {
+    display: flex;
+  }
+
+  .mobile-menu {
+    display: flex;
+  }
+
+  .main-content {
+    width: 100%;
+    margin-left: 0;
+    padding: var(--space-5);
+    padding-top: 80px;
+  }
+}
+
+@media (max-width: 576px) {
+  .main-content {
+    padding: var(--space-4);
+    padding-top: 75px;
+  }
+}
+
+/* Nunca permitir rolagem horizontal na página inteira */
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+@media print {
+  .sidebar,
+  .mobile-header,
+  .mobile-menu,
+  .mobile-overlay {
+    display: none !important;
+  }
+
+  .main-content {
+    margin-left: 0 !important;
+    width: 100% !important;
+    padding: 0 !important;
+  }
+}

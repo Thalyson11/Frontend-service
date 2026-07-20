@@ -38,7 +38,7 @@ async function buscar(status_solicitacao = "aberta") {
     mostrarCarregandoTecnico("Carregando chamados abertos...");
 
     try {
-        let url = `https://backend-service-production-e5a3.up.railway.app/Manutencao/solicitacao/testee/${status_solicitacao}`;
+        let url = `https://backend-service-production-ac30.up.railway.app/Manutencao/solicitacao/testee/${status_solicitacao}`;
         const res = await fetch(url);
 
         if (!res.ok) throw new Error("Erro na API");
@@ -111,7 +111,7 @@ async function atribuir(id_solicitacao) {
             return;
         }
 
-        const res = await fetch(`https://backend-service-production-e5a3.up.railway.app/Manutencao/solicitacao/atribuir/tecnico/${id_solicitacao}`, {
+        const res = await fetch(`https://backend-service-production-ac30.up.railway.app/Manutencao/solicitacao/atribuir/tecnico/${id_solicitacao}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
@@ -144,7 +144,7 @@ async function marcar_concluido(id_solicitacao) {
             return;
         }
 
-        const res = await fetch(`https://backend-service-production-e5a3.up.railway.app/Manutencao/solicitacao/atribuir/tecnico/${id_solicitacao}`, {
+        const res = await fetch(`https://backend-service-production-ac30.up.railway.app/Manutencao/solicitacao/atribuir/tecnico/${id_solicitacao}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
@@ -177,7 +177,7 @@ async function marcar_cancelada(id_solicitacao) {
             return;
         }
 
-        const res = await fetch(`https://backend-service-production-e5a3.up.railway.app/Manutencao/solicitacao/atribuir/tecnico/${id_solicitacao}`, {
+        const res = await fetch(`https://backend-service-production-ac30.up.railway.app/Manutencao/solicitacao/atribuir/tecnico/${id_solicitacao}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
@@ -214,7 +214,7 @@ async function minhas_manutencoes() {
     mostrarCarregandoTecnico("Carregando suas manutenções...");
 
     try {
-        let url = `https://backend-service-production-e5a3.up.railway.app/Manutencao/solicitacao/tecnico/${id_tecnico}`;
+        let url = `https://backend-service-production-ac30.up.railway.app/Manutencao/solicitacao/tecnico/${id_tecnico}`;
         const res = await fetch(url);
 
         if (!res.ok) throw new Error("Erro na API");
@@ -421,7 +421,7 @@ async function encerrarChamado() {
         }
 
         const res = await fetch(
-            `https://backend-service-production-e5a3.up.railway.app/Manutencao/solicitacao/concluir/${solicitacaoAtual}`,
+            `https://backend-service-production-ac30.up.railway.app/Manutencao/solicitacao/concluir/${solicitacaoAtual}`,
             {
                 method: "PUT",
                 headers: {

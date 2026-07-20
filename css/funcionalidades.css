@@ -15,54 +15,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-.layout {
-  display: flex;
-  min-height: 100vh;
-}
-
-.sidebar {
-  width: 260px;
-  flex-shrink: 0;
-  background: var(--brand-900);
-  padding: var(--space-7) var(--space-5);
-  color: #ffffff;
-}
-
-.logo h2 {
-  margin-bottom: var(--space-8);
-  font-size: var(--fs-2xl);
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  padding: 0 var(--space-2);
-}
-
-.sidebar nav {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-}
-
-.sidebar nav a {
-  color: rgba(255, 255, 255, 0.72);
-  text-decoration: none;
-  padding: 13px 14px;
-  border-radius: var(--radius-md);
-  transition: background var(--transition-base), color var(--transition-base);
-  font-weight: 500;
-  font-size: var(--fs-base);
-}
-
-.sidebar nav a:hover,
-.sidebar nav a.active {
-  background: rgba(255, 255, 255, 0.14);
-  color: #ffffff;
-}
-
-.content {
-  flex: 1;
-  padding: var(--space-8);
-  min-width: 0;
-}
+/* Layout / sidebar / conteúdo agora definidos em nav.css (componente único) */
 
 .page-header {
   display: flex;
@@ -338,10 +291,6 @@ tbody tr:hover {
 }
 
 @media (max-width: 768px) {
-  .layout { flex-direction: column; }
-  .sidebar { width: 100%; padding: var(--space-5); }
-  .sidebar nav { flex-direction: row; overflow-x: auto; }
-  .content { padding: var(--space-5); }
   .usuario-box { position: static; margin: var(--space-4); flex-direction: column; }
 }
 

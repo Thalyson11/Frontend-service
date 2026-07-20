@@ -8,8 +8,8 @@ if (tipoRelatorioAdministrativo === "solicitante") {
     throw new Error("Relatório administrativo restrito ao gestor.");
 }
 
-const API_SOLICITACOES = "https://backend-service-production-e5a3.up.railway.app/Manutencao/solicitacao/teste";
-const API_USUARIOS = "https://backend-service-production-e5a3.up.railway.app/Manutencao";
+const API_SOLICITACOES = "https://backend-service-production-ac30.up.railway.app/Manutencao/solicitacao/teste";
+const API_USUARIOS = "https://backend-service-production-ac30.up.railway.app/Manutencao";
 
 let solicitacoesRelatorio = [];
 let usuariosRelatorio = [];

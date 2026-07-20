@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Minhas Solicitações</title>
   <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/nav.css">
   <link rel="stylesheet" href="css/minhas_solicitacoes.css">
       <link rel="stylesheet" href="css/ui-enhancements.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -39,7 +40,7 @@
     <!-- NAVBAR MOBILE -->
     <header class="mobile-header">
       <span class="mobile-brand">SupportDesk</span>
-      <button class="hamburger" id="hamburgerBtn" onclick="toggleMenu()" aria-label="Abrir menu">
+      <button class="hamburger" id="hamburgerBtn" onclick="toggleMenu()" aria-label="Abrir menu" aria-expanded="false">
         <span></span>
         <span></span>
         <span></span>
@@ -213,32 +214,6 @@
   <footer id="rodape-usuario"></footer>
 
   <script src="js/minhas_solicitacoes.js"></script>
-
-  <script>
-    function toggleMenu() {
-      const menu = document.getElementById("mobileMenu");
-      const overlay = document.getElementById("mobileOverlay");
-      const btn = document.getElementById("hamburgerBtn");
-      const isOpen = menu.classList.contains("open");
-
-      if (isOpen) {
-        menu.classList.remove("open");
-        overlay.classList.remove("active");
-        btn.classList.remove("open");
-      } else {
-        menu.classList.add("open");
-        overlay.classList.add("active");
-        btn.classList.add("open");
-      }
-    }
-
-    function closeMobileMenu() {
-      document.getElementById("mobileMenu").classList.remove("open");
-      document.getElementById("mobileOverlay").classList.remove("active");
-      document.getElementById("hamburgerBtn").classList.remove("open");
-    }
-  </script>
-
   <script src="js/ui-enhancements.js"></script>
 </body>
 </html>

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meu Relatório Técnico</title>
     <link rel="stylesheet" href="css/tokens.css">
+    <link rel="stylesheet" href="css/nav.css">
     <link rel="stylesheet" href="css/relatorios.css">
     <link rel="stylesheet" href="css/ui-enhancements.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,19 +14,46 @@
 <body data-relatorio-perfil="tecnico">
 
 <div class="layout">
-    <aside class="sidebar">
-        <div class="logo">
-            <h2>SupportDesk</h2>
-        </div>
 
-        <nav aria-label="Navegação Principal">
-            <a href="manutencoes_aberta.html">Manutenções</a>
-            <a href="RelatorioTecnico.html" class="active">Meu Relatório</a>
-            <a href="index.html">Logout</a>
-        </nav>
+    <!-- SIDEBAR (desktop) -->
+    <aside class="sidebar">
+        <div>
+            <h2 class="l">SupportDesk</h2>
+            <div class="logo-area">
+                <div class="logo-icon">🛠</div>
+                <div>
+                    <h2>Técnico</h2>
+                    <p>Painel do Técnico</p>
+                </div>
+            </div>
+            <nav class="menu">
+                <a href="manutencoes_aberta.html">🛠 Minhas Manutenções</a>
+                <a href="RelatorioTecnico.html" class="active">📊 Meu Relatório</a>
+                <a href="index.html">🚪 Logout</a>
+            </nav>
+        </div>
     </aside>
 
-    <main class="content">
+    <!-- NAVBAR MOBILE -->
+    <header class="mobile-header">
+        <span class="mobile-brand">SupportDesk</span>
+        <button class="hamburger" id="hamburgerBtn" onclick="toggleMenu()" aria-label="Abrir menu" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </header>
+
+    <!-- MENU MOBILE -->
+    <nav class="mobile-menu" id="mobileMenu" aria-label="Navegação móvel">
+        <a href="manutencoes_aberta.html" onclick="closeMobileMenu()">🛠 Minhas Manutenções</a>
+        <a href="RelatorioTecnico.html" class="active" onclick="closeMobileMenu()">📊 Meu Relatório</a>
+        <a href="index.html" onclick="closeMobileMenu()">🚪 Logout</a>
+    </nav>
+    <!-- OVERLAY -->
+    <div class="mobile-overlay" id="mobileOverlay" onclick="closeMobileMenu()"></div>
+
+    <main class="main-content">
         <header class="page-header">
             <div>
                 <h1>Meu Relatório Técnico</h1>

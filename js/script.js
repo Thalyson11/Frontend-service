@@ -8,7 +8,7 @@ form.addEventListener("submit", async (e) => {
     const senha = document.getElementById("senha").value;
 
     try {
-        const response = await fetch("https://backend-service-production-e5a3.up.railway.app/Manutencao/login/", {
+        const response = await fetch("https://backend-service-production-ac30.up.railway.app/Manutencao/login/", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

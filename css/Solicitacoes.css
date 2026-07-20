@@ -17,68 +17,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-.layout {
-  display: flex;
-  min-height: 100vh;
-}
-
-/* SIDEBAR */
-.sidebar {
-  width: 260px;
-  flex-shrink: 0;
-  background: var(--brand-900);
-  padding: var(--space-7) var(--space-5);
-  color: #ffffff;
-}
-
-.logo h2 {
-  margin-bottom: var(--space-8);
-  font-size: var(--fs-2xl);
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  padding: 0 var(--space-2);
-}
-
-.sidebar nav {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-}
-
-.sidebar nav a {
-  color: rgba(255, 255, 255, 0.72);
-  text-decoration: none;
-  padding: 13px 14px;
-  border-radius: var(--radius-md);
-  transition: background var(--transition-base), color var(--transition-base);
-  font-weight: 500;
-  font-size: var(--fs-base);
-}
-
-.sidebar nav a:hover,
-.sidebar nav a.active {
-  background: rgba(255, 255, 255, 0.14);
-  color: #ffffff;
-}
-
-.sidebar nav a.active {
-  font-weight: 600;
-}
-
-.sidebar nav a:focus-visible,
-button:focus-visible,
-input:focus-visible,
-select:focus-visible {
-  outline: 2px solid var(--brand-500);
-  outline-offset: 2px;
-}
-
-/* CONTEÚDO */
-.content {
-  flex: 1;
-  padding: var(--space-8);
-  min-width: 0;
-}
+/* Layout / sidebar / conteúdo agora definidos em nav.css (componente único) */
 
 .page-header {
   display: flex;
@@ -461,25 +400,6 @@ td button:first-child:not(.btn-olho):not(.btn-olho-desabilitado):hover {
 
 /* Tablets */
 @media (max-width: 1024px) {
-  .layout {
-    flex-direction: column;
-  }
-
-  .sidebar {
-    width: 100%;
-    padding: var(--space-5);
-  }
-
-  .sidebar nav {
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: var(--space-2);
-  }
-
-  .content {
-    padding: var(--space-5);
-  }
-
   .page-header {
     flex-direction: column;
     align-items: flex-start;
@@ -507,10 +427,6 @@ td button:first-child:not(.btn-olho):not(.btn-olho-desabilitado):hover {
 
 /* Celulares (Modo Card Protegido) */
 @media (max-width: 768px) {
-  .content {
-    padding: var(--space-4);
-  }
-
   .page-header h1 {
     font-size: var(--fs-3xl);
   }
@@ -630,10 +546,6 @@ td button:first-child:not(.btn-olho):not(.btn-olho-desabilitado):hover {
 
 /* Celulares pequenos */
 @media (max-width: 480px) {
-  .sidebar nav {
-    flex-direction: column;
-  }
-
   .page-header h1 {
     font-size: var(--fs-2xl);
   }

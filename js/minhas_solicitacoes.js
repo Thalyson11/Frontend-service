@@ -36,7 +36,7 @@ async function buscar() {
     content.innerHTML = `<div class="sd-skeleton"></div><div class="sd-skeleton"></div><div class="sd-skeleton"></div>`;
 
     try {
-        const url = `https://backend-service-production-e5a3.up.railway.app/Manutencao/solicitacao/usuario/${idSolicitante}`;
+        const url = `https://backend-service-production-ac30.up.railway.app/Manutencao/solicitacao/usuario/${idSolicitante}`;
         const res = await fetch(url);
 
         if (!res.ok) throw new Error("Erro na API");
@@ -310,7 +310,7 @@ document.getElementById("btnLimparFiltrosSolicitante")?.addEventListener("click"
 document.getElementById("btnExportarSolicitante")?.addEventListener("click", exportarSolicitacoesCsv);
 document.getElementById("btnImprimirSolicitante")?.addEventListener("click", () => window.print());
 
-const API_URL = "https://backend-service-production-e5a3.up.railway.app/Manutencao/solicitacao/teste";
+const API_URL = "https://backend-service-production-ac30.up.railway.app/Manutencao/solicitacao/teste";
 
 // ABRIR MODAL
 function abrirModalAdicionar() {
@@ -360,7 +360,7 @@ function fecharModal(id) {
     
     async function carregarSolicitantes(tipo, selectId) {
         try {
-          const response = await fetch(`https://backend-service-production-e5a3.up.railway.app/Manutencao/${tipo}`);
+          const response = await fetch(`https://backend-service-production-ac30.up.railway.app/Manutencao/${tipo}`);
           const dados = await response.json();
       
           const select = document.getElementById(selectId);

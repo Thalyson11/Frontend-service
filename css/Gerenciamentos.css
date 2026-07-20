@@ -18,72 +18,7 @@ body {
 }
 
 /* LAYOUT */
-.layout {
-  display: flex;
-  min-height: 100vh;
-}
-
-/* SIDEBAR */
-.sidebar {
-  width: 264px;
-  flex-shrink: 0;
-  background: var(--brand-900);
-  padding: var(--space-7) var(--space-5);
-  color: #ffffff;
-}
-
-.logo {
-  margin-bottom: var(--space-8);
-  padding: 0 var(--space-2);
-}
-
-.logo h2 {
-  font-size: var(--fs-2xl);
-  font-weight: 700;
-  letter-spacing: -0.02em;
-}
-
-.sidebar nav {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-}
-
-.sidebar nav a {
-  color: rgba(255, 255, 255, 0.72);
-  text-decoration: none;
-  padding: 13px 16px;
-  border-radius: var(--radius-md);
-  transition: background var(--transition-base), color var(--transition-base);
-  font-weight: 500;
-  font-size: var(--fs-base);
-}
-
-.sidebar nav a:hover {
-  background: rgba(255, 255, 255, 0.08);
-  color: #ffffff;
-}
-
-.sidebar nav a.active {
-  background: rgba(255, 255, 255, 0.14);
-  color: #ffffff;
-  font-weight: 600;
-}
-
-.sidebar nav a:focus-visible,
-button:focus-visible,
-input:focus-visible,
-select:focus-visible {
-  outline: 2px solid var(--brand-500);
-  outline-offset: 2px;
-}
-
-/* CONTEÚDO */
-.content {
-  flex: 1;
-  padding: var(--space-8);
-  min-width: 0;
-}
+/* Layout / sidebar / conteúdo agora definidos em nav.css (componente único) */
 
 .page-header {
   display: flex;
@@ -395,15 +330,6 @@ label {
 
 /* RESPONSIVIDADE GERAL */
 @media (max-width: 992px) {
-
-  .layout {
-    flex-direction: column;
-  }
-
-  .sidebar {
-    width: 100%;
-    padding: var(--space-5);
-  }
 
   .metrics-grid {
     grid-template-columns: repeat(2, 1fr);

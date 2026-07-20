@@ -1,5 +1,5 @@
-const API_DASH_SOLICITACOES = "https://backend-service-production-e5a3.up.railway.app/Manutencao/solicitacao/teste";
-const API_DASH_USUARIOS = "https://backend-service-production-e5a3.up.railway.app/Manutencao";
+const API_DASH_SOLICITACOES = "https://backend-service-production-ac30.up.railway.app/Manutencao/solicitacao/teste";
+const API_DASH_USUARIOS = "https://backend-service-production-ac30.up.railway.app/Manutencao";
 
 const dashboard = {
     totalSolicitacoes: document.getElementById("dashTotalSolicitacoes"),

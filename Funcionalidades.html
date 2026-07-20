@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Funcionalidades</title>
     <link rel="stylesheet" href="css/tokens.css">
+    <link rel="stylesheet" href="css/nav.css">
     <link rel="stylesheet" href="css/funcionalidades.css">
         <link rel="stylesheet" href="css/ui-enhancements.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,22 +14,50 @@
 <body>
 
 <div class="layout">
-    <aside class="sidebar">
-        <div class="logo">
-            <h2>SupportDesk</h2>
-        </div>
 
-        <nav aria-label="Navegação Principal">
-            <a href="Dashboard.html">Dashboard</a>
-            <a href="Solicitacoes.html">Solicitações</a>
-            <a href="Gerenciamentos.html">Usuários</a>
-            <a href="Funcionalidades.html" class="active">Funcionalidades</a>
-            <a href="Relatorios.html">Relatórios</a>
-            <a href="index.html">Logout</a>
-        </nav>
+    <!-- SIDEBAR (desktop) -->
+    <aside class="sidebar">
+      <div class="logo-area">
+        <div class="logo-icon">🖥️</div>
+        <div>
+          <h2 class="l">SupportDesk</h2>
+          <p>Administrador</p>
+        </div>
+      </div>
+      <nav class="menu" aria-label="Navegação Principal">
+          <a href="Dashboard.html">📊 Dashboard</a>
+          <a href="Solicitacoes.html">📋 Solicitações</a>
+          <a href="Gerenciamentos.html">👥 Usuários</a>
+          <a href="Funcionalidades.html" class="active">⚙️ Funcionalidades</a>
+          <a href="Relatorios.html">📈 Relatórios</a>
+          <a href="index.html">🚪 Logout</a>
+      </nav>
     </aside>
 
-    <main class="content">
+    <!-- NAVBAR MOBILE -->
+    <header class="mobile-header">
+      <span class="mobile-brand">SupportDesk</span>
+      <button class="hamburger" id="hamburgerBtn" onclick="toggleMenu()" aria-label="Abrir menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </header>
+
+    <!-- MENU MOBILE -->
+    <nav class="mobile-menu" id="mobileMenu" aria-label="Navegação móvel">
+          <a href="Dashboard.html" onclick="closeMobileMenu()">📊 Dashboard</a>
+          <a href="Solicitacoes.html" onclick="closeMobileMenu()">📋 Solicitações</a>
+          <a href="Gerenciamentos.html" onclick="closeMobileMenu()">👥 Usuários</a>
+          <a href="Funcionalidades.html" class="active" onclick="closeMobileMenu()">⚙️ Funcionalidades</a>
+          <a href="Relatorios.html" onclick="closeMobileMenu()">📈 Relatórios</a>
+          <a href="index.html" onclick="closeMobileMenu()">🚪 Logout</a>
+    </nav>
+    <!-- OVERLAY -->
+    <div class="mobile-overlay" id="mobileOverlay" onclick="closeMobileMenu()"></div>
+
+
+    <main class="main-content">
         <header class="page-header">
             <div>
                 <h1>Funcionalidades</h1>

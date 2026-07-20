@@ -278,7 +278,7 @@ html[data-theme="dark"] #totalFiltrado {
 .sd-icon-button,
 .sd-copy-button {
   border: 1px solid var(--border-color) !important;
-  background: var(--bg-surface) !important;
+  background: orange !important;
   color: var(--text-primary) !important;
   border-radius: 999px !important;
   box-shadow: var(--shadow-xs);

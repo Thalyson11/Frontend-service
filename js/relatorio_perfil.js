@@ -3,7 +3,7 @@
     const idUsuario = localStorage.getItem("id_usuario");
     const nomeUsuario = localStorage.getItem("nome_usuario") || "N/A";
     const tipoUsuario = localStorage.getItem("tipo_usuario") || "N/A";
-    const API_BASE = "https://backend-service-production-e5a3.up.railway.app/Manutencao/solicitacao";
+    const API_BASE = "https://backend-service-production-ac30.up.railway.app/Manutencao/solicitacao";
 
     let dadosRelatorio = [];
     let dadosFiltrados = [];

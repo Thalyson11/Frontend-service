@@ -1,4 +1,4 @@
-const API_URL = "https://backend-service-production-e5a3.up.railway.app/Manutencao/solicitacao/teste";
+const API_URL = "https://backend-service-production-ac30.up.railway.app/Manutencao/solicitacao/teste";
 let solicitacoesGestorBase = [];
 
 function normalizarSolicitacao(valor) {
@@ -173,7 +173,7 @@ window.onload = carregarDadosUsuario;
 
 async function carregarSolicitantes(tipo, selectId) {
     try {
-        const response = await fetch(`https://backend-service-production-e5a3.up.railway.app/Manutencao/${tipo}`);
+        const response = await fetch(`https://backend-service-production-ac30.up.railway.app/Manutencao/${tipo}`);
         const dados = await response.json();
 
         const select = document.getElementById(selectId);
@@ -242,7 +242,7 @@ function toggleFiltro() {
 }
 
 function filtrar(status_solicitacao) {
-    fetch(`https://backend-service-production-e5a3.up.railway.app/Manutencao/solicitacao/filtro/${status_solicitacao}`)
+    fetch(`https://backend-service-production-ac30.up.railway.app/Manutencao/solicitacao/filtro/${status_solicitacao}`)
         .then(res => res.json())
         .then(data => {
             solicitacoesGestorBase = Array.isArray(data) ? data : [data];
